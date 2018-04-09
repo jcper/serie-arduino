@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tutorial">
+<head>
+  <meta charset="UTF-8">
+  <title>Sensores</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+  	 var app= angular.module('tutorial',[]);
+  	 var socket = io();
+  	 app.controller('temperatura', ['$scope',function($scope){
+
+  	 	socket.on('lectura',function(lectura){
+  	 		$scope.$apply(function(){
+  	 			$scope.dato=lectura;
+            });
+  	 	 });
+  	 }])
+  </script>
+
+  </head>
+  <body>
+    <div ng-controller="temperatura">
+    	{{dato}}
+     </div>
+  </body>
+ </html>
